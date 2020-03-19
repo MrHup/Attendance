@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "912280791916",
+    "firebase_url": "https://smart-attendance-95b4f.firebaseio.com",
+    "project_id": "smart-attendance-95b4f",
+    "storage_bucket": "smart-attendance-95b4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912280791916:android:e7d15211c8ca04116f6149",
+        "android_client_info": {
+          "package_name": "com.babygirl.attendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912280791916-4dmsne4g2d3akup6j9fvt93fe8evcgh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babygirl.attendance",
+            "certificate_hash": "6715ae42a9ffddcff41af33dbd091741900cd500"
+          }
+        },
+        {
+          "client_id": "912280791916-1t6eg0sqsevdh0ftccd06lqsfis9bmn7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVHkSZWbGK2_G-qHmyobL-vhx5i1D-PtA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912280791916-1t6eg0sqsevdh0ftccd06lqsfis9bmn7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
