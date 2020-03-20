@@ -30,6 +30,6 @@ public class Activity2 extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+//.
     }
 }
