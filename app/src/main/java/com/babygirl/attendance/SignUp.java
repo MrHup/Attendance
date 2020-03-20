@@ -15,9 +15,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     private FirebaseAuth mAuth; // declare instance of Firebase Auth
+
+    // initialize the user in the realtime DB
+    // aka make user folder
+    // will contain interest_courses
+    // and a bool to notify the app if he is prof or student
+    public void make_user_folder(){
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("atd-system/Users");
+
+        myRef.setValue("Hello, World!");
+    }
+
 
     public void signup(String email,String pass){
         mAuth.createUserWithEmailAndPassword(email, pass)
@@ -28,6 +43,8 @@ public class SignUp extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("debug_firebase", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
+
 
                             startActivity(new Intent(SignUp.this, Courses.class));
                             finish();
