@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
                             startActivity(new Intent(LoginActivity.this, Courses.class));
                             finish();
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("debug_firebase", "signInWithEmail:failure", task.getException());

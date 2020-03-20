@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -88,6 +89,16 @@ public class Courses extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 logout();
+            }
+        });
+
+        Button to_qr = findViewById(R.id.qr_button);
+        to_qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(Courses.this, QR_Reader.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 

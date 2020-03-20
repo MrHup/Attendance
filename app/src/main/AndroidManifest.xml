@@ -2,25 +2,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.babygirl.attendance">
 
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
+
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Courses" android:screenOrientation="portrait"></activity>
-        <activity android:name=".ChooseRole" android:screenOrientation="portrait"/>
-        <activity android:name=".SignUp" android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".Activity2" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity android:name=".QR_Reader"></activity>
+        <activity
+            android:name=".Courses"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ChooseRole"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode"></meta-data>
+
     </application>
 
 </manifest>
