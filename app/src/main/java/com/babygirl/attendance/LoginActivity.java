@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
+
+    TextView mail;
+    TextView password;
     private FirebaseAuth mAuth; // declare instance of Firebase Auth
 
     public void login(String mail, String pass){
@@ -68,5 +72,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mail = (TextView) findViewById(R.id.mail);
+        Drawable[] mailIcon = mail.getCompoundDrawables();
+        mailIcon[0].setAlpha(128);
+
+        password = (TextView) findViewById(R.id.password);
+        Drawable[] lockIcon = password.getCompoundDrawables();
+        lockIcon[0].setAlpha(128);
     }
 }
