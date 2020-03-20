@@ -18,6 +18,7 @@ public class ChooseRole extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(ChooseRole.this, SignUp.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.putExtra("is_prof", true);
                 startActivity(i);
             }
         });
@@ -27,6 +28,7 @@ public class ChooseRole extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i= new Intent(ChooseRole.this, SignUp.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.putExtra("is_prof", false);
                 startActivity(i);
             }
         });
