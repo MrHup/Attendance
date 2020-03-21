@@ -102,7 +102,18 @@ public class Courses extends AppCompatActivity {
             }
         });
 
-        // check if user is proffesor or teacher
+        Button to_generator = findViewById(R.id.generator_button);
+        to_generator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(Courses.this, QR_Generator.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                i.putExtra("COURSE_ID", "jkLM1dbV");
+                startActivity(i);
+            }
+        });
+
+        // check if user is professor or teacher
 
 
     }
