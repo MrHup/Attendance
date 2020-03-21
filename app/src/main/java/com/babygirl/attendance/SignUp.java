@@ -35,15 +35,16 @@ public class SignUp extends AppCompatActivity {
     // will contain interest_courses
     // and a bool to notify the app if he is prof or student
 
-        /*public void make_user_folder(){
+        public void make_user_folder(){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         //String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
         //get the is_prof value
-        Boolean is_prof = getIntent().getExtras().getBoolean("is_prof");
+        //Boolean is_prof = getIntent().getExtras().getBoolean("is_prof");
 
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("123");}*/
+        DatabaseReference myRef = database.getReference().child("user");
+        myRef.child("user").setValue("123");
+        }
 
 
 
@@ -117,7 +118,9 @@ public class SignUp extends AppCompatActivity {
         /*findViewById(R.id.button_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                make_user_folder();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("/message");
+                myRef.setValue("123");
 
             }
         });*/
