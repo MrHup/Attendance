@@ -102,7 +102,7 @@ public class Courses extends AppCompatActivity {
             }
         });
 
-        // check if user is proffesor or teacher
+        // check if user is professor or teacher
 
 
     }
