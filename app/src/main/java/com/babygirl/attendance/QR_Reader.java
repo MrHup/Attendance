@@ -110,7 +110,7 @@ public class QR_Reader extends AppCompatActivity {
                             }
 
 
-                            //I DONT KNOW HOW TO DO IT IM CRYING I HATE MYSELF!!!!!!!!!!!!!!!
+                            //unfinished stuff do not touch
                             /*FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myRef = database.getReference("Courses/");
                             final String finalSubString = subString;
