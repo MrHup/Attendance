@@ -4,25 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QR_Reader">
+    tools:context=".QR_Reader"
+    android:background="@drawable/gradient_backround">
 
     <SurfaceView
         android:id="@+id/camerapreview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="300dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/button_border"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_qr"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/camerapreview"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
 
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
         android:text="Scan the QR Code to validate"
         android:textSize="18sp"
-        android:gravity="center"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camerapreview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
