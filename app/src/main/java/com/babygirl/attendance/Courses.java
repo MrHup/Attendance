@@ -66,10 +66,8 @@ public class Courses extends AppCompatActivity {
         // get firebase user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Name, email address, and profile photo Url
-            String name = user.getDisplayName();
+            //String name = user.getDisplayName();
             String email = user.getEmail();
-            Uri photoUrl = user.getPhotoUrl();
 
             // Check if user's email is verified
             boolean emailVerified = user.isEmailVerified();
