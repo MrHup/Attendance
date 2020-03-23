@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddCourse"></activity>
+        <activity android:name=".Loading"></activity>
+        <activity android:name=".AddCourse" />
         <activity android:name=".Student_Dashboard" />
         <activity android:name=".Prof_Dashboard" />
         <activity android:name=".QR_Generator" />
