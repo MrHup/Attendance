@@ -61,8 +61,9 @@ public class SignUp extends AppCompatActivity {
 
                             make_user_folder(user); //write in database
 
-
-                            startActivity(new Intent(SignUp.this, Courses.class));
+                            Intent i = new Intent(SignUp.this, Loading.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
                             finish();
 
                         } else {
