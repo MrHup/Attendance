@@ -76,6 +76,8 @@ public class AddCourse extends AppCompatActivity {
         // create course entry
         // save reference to the course for current user
         write_data();
+
+        finish();
     }
 
     @Override
