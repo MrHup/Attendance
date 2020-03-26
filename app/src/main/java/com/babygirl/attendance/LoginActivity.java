@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; // declare instance of Firebase Auth
 
     public void login(String mail, String pass){
-        Log.d("debug_fuck", mail + " and " + pass);
+        Log.d("debug_firebase", mail + " and " + pass);
         mAuth.signInWithEmailAndPassword(mail, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 EditText email_tv = (EditText) findViewById(R.id.mail);
                 EditText password_tv = (EditText) findViewById(R.id.password);
                 if(!email_tv.getText().toString().equals("") && !password_tv.getText().toString().equals("")) {
-                    Log.d("debug_fuck", email_tv.getText().toString() + " attempted to login");
+                    Log.d("debug_firebase", email_tv.getText().toString() + " attempted to login");
                     login(email_tv.getText().toString(), password_tv.getText().toString());
                 }else{ // deal with input exceptions
                     Toast.makeText(getApplicationContext(), "Please fill all the required fields",

@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(is_logged()){
-                    Log.d("debug_fuck","User logged in");
+                    Log.d("debug_firebase","User logged in");
                     // Start loading activity to handle user specific login
                     Intent i = new Intent(MainActivity.this, Loading.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 }else {
-                    Log.d("debug_fuck","User not logged in");
+                    Log.d("debug_firebase","User not logged in");
                     Intent i = new Intent(MainActivity.this, Activity2.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
