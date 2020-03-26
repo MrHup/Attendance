@@ -125,7 +125,7 @@ public class QR_Reader extends AppCompatActivity {
                                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference myRef = database.getReference("Courses/");
                                 final String finalSubString = subString;
-                                myRef.addValueEventListener(new ValueEventListener() {
+                                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -149,6 +149,7 @@ public class QR_Reader extends AppCompatActivity {
                                                     DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+strDate+"/"+extract_name_curr_user());
                                                     myRef.setValue(true);
                                                     textView.setText("Success");
+                                                    finish();
                                                 }
 
                                                 else
@@ -159,7 +160,7 @@ public class QR_Reader extends AppCompatActivity {
                                             }
 
                                         }
-                                        finish();
+
                                     }
                                     @Override
                                     public void onCancelled(DatabaseError error) {
