@@ -159,7 +159,7 @@ public class QR_Reader extends AppCompatActivity {
                                             }
 
                                         }
-
+                                        finish();
                                     }
                                     @Override
                                     public void onCancelled(DatabaseError error) {
@@ -178,7 +178,7 @@ public class QR_Reader extends AppCompatActivity {
                     });
 
                 }
-                finish();
+
             }
         });
 
