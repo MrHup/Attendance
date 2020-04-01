@@ -111,6 +111,16 @@ public class Courses extends AppCompatActivity {
             }
         });
 
+        Button to_attendance = findViewById(R.id.to_attendance_button);
+        to_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(Courses.this, AttendanceListStudent.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
+        });
+
         // check if user is professor or teacher
 
 
