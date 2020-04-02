@@ -146,7 +146,7 @@ public class QR_Reader extends AppCompatActivity {
                                                     String strDate = dateFormat.format(date).toString();
                                                     Log.d("debug_baby", strDate);
                                                     //Log.d("debug_baby", "succes");
-                                                    DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+strDate+"/"+extract_name_curr_user());
+                                                    DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+strDate+"_"+extract_name_curr_user());
                                                     myRef.setValue(true);
                                                     textView.setText("Success");
                                                     finish();
