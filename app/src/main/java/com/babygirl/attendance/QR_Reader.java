@@ -140,7 +140,6 @@ public class QR_Reader extends AppCompatActivity {
                                                 // Log.d("debug_baby", child.child("DQRC").getValue().toString());
 
                                                 if(result_code.equals(child.child("DQRC").getValue().toString())) //check if DQRC is the same as in the db
-
                                                 {
 
                                                     DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -153,6 +152,10 @@ public class QR_Reader extends AppCompatActivity {
                                                     myRef.setValue(strDate);
                                                     myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+identifier+"/user_mail");
                                                     myRef.setValue(HelpFuncs.extract_curr_user_mail());
+
+                                                    // add course to interest_courses
+                                                    myRef = database.getReference("Users/+"+ FirebaseAuth.getInstance().getCurrentUser().getUid()+"/interest_courses/"+child.getKey());
+                                                    myRef.setValue(true);
 
                                                     textView.setText("Success");
                                                     finish();
