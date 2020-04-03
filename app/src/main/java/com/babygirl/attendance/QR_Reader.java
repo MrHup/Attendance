@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
+import com.babygirl.attendance.HelpFuncs;
 
 public class QR_Reader extends AppCompatActivity {
     SurfaceView surfaceView;
@@ -48,6 +48,8 @@ public class QR_Reader extends AppCompatActivity {
         }
         return "";
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +119,7 @@ public class QR_Reader extends AppCompatActivity {
                             }
 
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(1000);
+                            vibrator.vibrate(70);
 
                             //verifying if the code is valid
                             if(subString!="")
@@ -145,9 +147,14 @@ public class QR_Reader extends AppCompatActivity {
                                                     Date date = new Date();
                                                     String strDate = dateFormat.format(date).toString();
                                                     Log.d("debug_baby", strDate);
-                                                    //Log.d("debug_baby", "succes");
-                                                    DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+strDate+"_"+extract_name_curr_user());
+
+                                                    //DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+strDate+"_"+extract_name_curr_user());
+                                                    //myRef.setValue(true);
+                                                    DatabaseReference myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+HelpFuncs.getAlphaNumeric(6)+"/date"+strDate);
                                                     myRef.setValue(true);
+                                                    myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+HelpFuncs.getAlphaNumeric(6)+"/user_mail"+HelpFuncs.extract_curr_user_mail());
+                                                    myRef.setValue(true);
+
                                                     textView.setText("Success");
                                                     finish();
                                                 }
