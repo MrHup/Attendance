@@ -37,7 +37,7 @@ public class Loading extends AppCompatActivity {
                 }
                 else{
                     Log.d("debug_firebase","user is student, going to Courses");
-                    Intent i = new Intent(Loading.this, Courses.class);
+                    Intent i = new Intent(Loading.this, AttendanceListStudent.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(i);
                 }
