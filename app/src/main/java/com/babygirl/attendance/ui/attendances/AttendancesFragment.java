@@ -1,6 +1,7 @@
 package com.babygirl.attendance.ui.attendances;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.babygirl.attendance.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class AttendancesFragment extends Fragment {
 
@@ -30,6 +38,33 @@ public class AttendancesFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        /// START USER PROCESSING HERE
+        // get user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+           Log.d("debug_firebase","Error at getting user in fragment attendances!");
+        }
+        String user_id = "+"+user.getUid();
+        // fetch current user's interest_courses
+        Query query2 = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id).child("interest_courses");
+        query2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for(DataSnapshot d : dataSnapshot.getChildren()) {
+                        Log.d("debug_querry",d.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         return root;
     }
 }

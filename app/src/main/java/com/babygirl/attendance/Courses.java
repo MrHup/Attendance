@@ -122,7 +122,7 @@ public class Courses extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i= new Intent(Courses.this, QR_Generator.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                i.putExtra("COURSE_ID", "cqUTMO");
+                i.putExtra("COURSE_ID", "jkLM1dbV");
                 startActivity(i);
             }
         });
