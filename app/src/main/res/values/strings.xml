@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Attendance</string>
     <string name="title_activity_attendance_list_student">AttendanceListStudent</string>
+    <string name="title_activity_prof_dashboard">Prof_Dashboard</string>
     <string name="title_home">Profile</string>
     <string name="title_dashboard">Attendance</string>
     <string name="title_notifications">Presence Card</string>
+    <string name="title_course_manager">Course Manager</string>
 </resources>

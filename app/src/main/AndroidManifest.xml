@@ -13,6 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme2"
         >
+
+        <activity
+            android:name=".Prof_Dashboard"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_activity_prof_dashboard"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.babygirl.attendance.MainActivity" />
+
+        </activity>
+
         <activity
             android:theme="@style/AppTheme"
             android:name=".AttendanceListStudent"
@@ -25,7 +37,7 @@
         <activity android:name=".Loading" />
         <activity android:name=".AddCourse" />
         <activity android:name=".Student_Dashboard" />
-        <activity android:name=".Prof_Dashboard" />
+
         <activity android:name=".QR_Generator" />
         <activity android:name=".QR_Reader" />
         <activity

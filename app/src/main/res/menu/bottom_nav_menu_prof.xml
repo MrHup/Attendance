@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_perm_identity_black_18dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_attendances"
+        android:icon="@drawable/ic_menu_book_24px"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_course_manager"
+        android:icon="@drawable/ic_school_black_24dp"
+        android:title="@string/title_course_manager" />
+
+</menu>

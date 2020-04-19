@@ -22,4 +22,10 @@
         android:name="com.babygirl.attendance.ui.presence_card.PresenceCardFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_presence_card" />
+
+    <fragment
+        android:id="@+id/navigation_course_manager"
+        android:name="com.babygirl.attendance.ui.course_manager.CourseManagerFragment"
+        android:label="@string/title_course_manager"
+        tools:layout="@layout/fragment_course_manager" />
 </navigation>
