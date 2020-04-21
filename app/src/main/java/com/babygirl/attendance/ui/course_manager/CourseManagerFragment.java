@@ -16,35 +16,65 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.babygirl.attendance.AddCourse;
+import com.babygirl.attendance.Attendance;
 import com.babygirl.attendance.AttendanceListStudent;
 import com.babygirl.attendance.Course;
 import com.babygirl.attendance.Courses;
 import com.babygirl.attendance.R;
+import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CourseManagerFragment extends Fragment {
 
-    private ArrayList<String> course_ids;
-    private ArrayList<Course> courses;
+    private ArrayList<String> course_ids = new ArrayList<>();
+    private ArrayList<Course> courses = new ArrayList<>();
     private CourseManagerViewModel mViewModel;
+    private FirebaseUser user;
+    private FirebaseDatabase db;
 
-    // get current user, get the ids of all his courses
     // get the course_name, target_year of each of those courses
+    private void get_Courses(){
+        for(String i_id : course_ids)
+        {
+            DatabaseReference userIdRef = db.getReference("Courses").child(i_id);
+            ValueEventListener eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String DQRC =  dataSnapshot.child("DQRC").getValue().toString();
+                    String course_name = dataSnapshot.child("course_name").getValue().toString();
+                    String instructor_name = dataSnapshot.child("instructor_name").getValue().toString();
+                    String target_year = dataSnapshot.child("target_year").getValue().toString();
+
+                    courses.add(new Course(DQRC, course_name, instructor_name,target_year));
+                    Log.d("debug_querry", courses.get(courses.size() - 1).toString());
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+            userIdRef.addListenerForSingleValueEvent(eventListener);
+        }
+    }
+
+    // get current user and get the ids respective to all his/hers courses
     private void get_IDs(){
+        db = FirebaseDatabase.getInstance();
         // get firebase user
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         String uuid = "+" + user.getUid();
         Log.d("debug_querry","hi from course manager wit id = " + uuid);
         // QUERRY EXAMPLE for retrieving all keys from a root
-        Query query2 = FirebaseDatabase.getInstance().getReference().child("Users").child(uuid).child("interest_courses");
+        Query query2 = db.getReference().child("Users").child(uuid).child("interest_courses");
         query2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -55,6 +85,7 @@ public class CourseManagerFragment extends Fragment {
                         course_ids.add(d.getKey());
                         i++;
                     }
+                    get_Courses();
                 }
             }
 
@@ -73,7 +104,8 @@ public class CourseManagerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_course_manager, container, false);
-        Log.d("debug_querry","hi from course manager");
+
+
         get_IDs();
 
         final ImageButton addCourse = root.findViewById(R.id.button_add_course);

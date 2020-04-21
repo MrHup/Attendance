@@ -4,33 +4,10 @@ import android.content.Intent;
 
 public class Course {
     private String DQRC;
-    private String name;
-    private String desc;
-    private int target_year;
-
-    public Course(String DQRC, String name, int target_year, String desc)
-    {
-        this.DQRC = DQRC;
-        this.name = name;
-        this.target_year = target_year;
-        this.desc = desc;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
+    private String course_name;
+    private String instructor_name;
+    //private String desc;
+    private String target_year;
 
     public String getDQRC() {
         return DQRC;
@@ -40,14 +17,49 @@ public class Course {
         this.DQRC = DQRC;
     }
 
+    public String getCourse_name() {
+        return course_name;
+    }
 
-    public int getTarget_year() {
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public String getInstructor_name() {
+        return instructor_name;
+    }
+
+    public void setInstructor_name(String instructor_name) {
+        this.instructor_name = instructor_name;
+    }
+
+    public String getTarget_year() {
         return target_year;
     }
 
-    public void setTarget_year(int target_year) {
+    public void setTarget_year(String target_year) {
         this.target_year = target_year;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "DQRC='" + DQRC + '\'' +
+                ", course_name='" + course_name + '\'' +
+                ", instructor_name='" + instructor_name + '\'' +
+                ", target_year='" + target_year + '\'' +
+                '}';
+    }
+
+    public Course(String DQRC, String course_name, String instructor_name, String target_year)
+    {
+        this.DQRC = DQRC;
+        this.course_name = course_name;
+        this.instructor_name = instructor_name;
+        this.target_year = target_year;
+    }
+
+
 
 
 

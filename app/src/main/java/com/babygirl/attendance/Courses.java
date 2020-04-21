@@ -57,7 +57,15 @@ public class Courses extends AppCompatActivity {
 
         textView.setText(msg);
     }
-
+    // -------------------EXAMPLEEEEE------------
+    private  void test_getClassObjFirebase(DataSnapshot dataSnapshot){
+        DataSnapshot attendancesSnapshot = dataSnapshot.child("attendances");
+        Iterable<DataSnapshot> attendances_list = attendancesSnapshot.getChildren();
+        for(DataSnapshot attendance: attendances_list){
+            Attendance currentAttendance = attendance.getValue(Attendance.class);
+            Log.d("debug_querry", "Attendance: " + currentAttendance.getUser_mail() + " | " +currentAttendance.getDate());
+        }
+    }
 
     // -----------------------------------------------------------
 
