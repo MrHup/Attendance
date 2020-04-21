@@ -6,11 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.course_manager.CourseManagerFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
-
     <ImageButton
         android:id="@+id/button_add_course"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,5 +18,12 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/circle_button"
         android:elevation="50dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

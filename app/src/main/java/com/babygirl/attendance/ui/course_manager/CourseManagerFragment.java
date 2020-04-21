@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +21,7 @@ import com.babygirl.attendance.AddCourse;
 import com.babygirl.attendance.Attendance;
 import com.babygirl.attendance.AttendanceListStudent;
 import com.babygirl.attendance.Course;
+import com.babygirl.attendance.CourseAdapter;
 import com.babygirl.attendance.Courses;
 import com.babygirl.attendance.R;
 import com.firebase.ui.auth.data.model.User;
@@ -35,12 +38,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CourseManagerFragment extends Fragment {
+    RecyclerView recyclerView;
 
     private ArrayList<String> course_ids = new ArrayList<>();
-    private ArrayList<Course> courses = new ArrayList<>();
+    public ArrayList<Course> courses = new ArrayList<>();
     private CourseManagerViewModel mViewModel;
     private FirebaseUser user;
     private FirebaseDatabase db;
+    private View v;
 
     // get the course_name, target_year of each of those courses
     private void get_Courses(){
@@ -57,6 +62,8 @@ public class CourseManagerFragment extends Fragment {
 
                     courses.add(new Course(DQRC, course_name, instructor_name,target_year));
                     Log.d("debug_querry", courses.get(courses.size() - 1).toString());
+
+                    displayCourseList(v);
                 }
 
                 @Override
@@ -64,6 +71,8 @@ public class CourseManagerFragment extends Fragment {
             };
             userIdRef.addListenerForSingleValueEvent(eventListener);
         }
+        Log.d("debug_recycler","before displayCourseList");
+
     }
 
     // get current user and get the ids respective to all his/hers courses
@@ -96,6 +105,14 @@ public class CourseManagerFragment extends Fragment {
         });
     }
 
+    private void displayCourseList(View root){
+        recyclerView = root.findViewById(R.id.recyclerView);
+
+        CourseAdapter myAdapter = new CourseAdapter(getContext(),courses);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
     public static CourseManagerFragment newInstance() {
         return new CourseManagerFragment();
     }
@@ -104,6 +121,7 @@ public class CourseManagerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_course_manager, container, false);
+        v= root;
 
 
         get_IDs();
@@ -125,7 +143,6 @@ public class CourseManagerFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(CourseManagerViewModel.class);
-
     }
 
 }
