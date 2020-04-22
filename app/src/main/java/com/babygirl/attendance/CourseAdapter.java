@@ -12,6 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder>{
@@ -51,6 +59,34 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     i.putExtra("COURSE_ID", subString);
                     context.startActivity(i);
                 }else{
+                    // get all attendances, put them in a list
+                    String DQRC = courses.get(position).getDQRC();
+                    int iend = DQRC.indexOf("_");
+                    String course_id = DQRC.substring(0 , iend); //id of course
+
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    final String user_mail = user.getEmail();
+
+                    DatabaseReference userIdRef = FirebaseDatabase.getInstance().getReference("Courses").child(course_id);
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            DataSnapshot attendancesSnapshot = dataSnapshot.child("attendances");
+                            Iterable<DataSnapshot> attendances_list = attendancesSnapshot.getChildren();
+                            for(DataSnapshot attendance: attendances_list){
+                                Attendance currentAttendance = attendance.getValue(Attendance.class);
+                                if(currentAttendance.getUser_mail().equals(user_mail))
+                                {
+                                    Log.d("debug_querry", "Attendance: " + currentAttendance.getUser_mail() + " | " +currentAttendance.getDate());
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                    };
+                    userIdRef.addListenerForSingleValueEvent(eventListener);
+
 
                 }
 
