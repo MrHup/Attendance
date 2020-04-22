@@ -30,6 +30,8 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,15 +50,21 @@ public class PresenceCardFragment extends Fragment {
     private BarcodeDetector barcodeDetector;
     private PresenceCardViewModel presenceCardViewModel;
 
+    private void addUserCourseReference(String course_id){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid=user.getUid();
+
+        // set reference to the course
+        DatabaseReference myRef = database.getReference("Users/+"+uid+"/interest_courses/").child(course_id);
+        myRef.setValue(true);
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         presenceCardViewModel =
                 ViewModelProviders.of(this).get(PresenceCardViewModel.class);
         View root = inflater.inflate(R.layout.activity_qr__reader, container, false);
-
-        /*Intent i = new Intent(getContext(), QR_Reader.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);*/
 
         /// IMPLEMENTATION OF ACTUAL QR READER
         surfaceView = (SurfaceView) root.findViewById(R.id.camerapreview);
@@ -154,6 +162,9 @@ public class PresenceCardFragment extends Fragment {
                                                     myRef.setValue(strDate);
                                                     myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+identifier+"/user_mail");
                                                     myRef.setValue(HelpFuncs.extract_curr_user_mail());
+
+                                                    // add course to interest_courses if not already there
+                                                    addUserCourseReference(child.getKey());
 
                                                     textView.setText("Success");
                                                     // get out of fragment

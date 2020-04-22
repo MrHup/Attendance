@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,6 +27,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     private ArrayList<Course> courses;
     private Context context;
     private Boolean deals_with_generator;
+    private int counter;
 
     public CourseAdapter(Context context, ArrayList<Course> courses, Boolean deals_with_generator){
         this.context = context;
@@ -67,18 +69,22 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     final String user_mail = user.getEmail();
 
+
                     DatabaseReference userIdRef = FirebaseDatabase.getInstance().getReference("Courses").child(course_id);
                     ValueEventListener eventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             DataSnapshot attendancesSnapshot = dataSnapshot.child("attendances");
                             Iterable<DataSnapshot> attendances_list = attendancesSnapshot.getChildren();
+                            counter = 0;
                             for(DataSnapshot attendance: attendances_list){
                                 Attendance currentAttendance = attendance.getValue(Attendance.class);
                                 if(currentAttendance.getUser_mail().equals(user_mail))
                                 {
+                                    counter+=1;
                                     Log.d("debug_querry", "Attendance: " + currentAttendance.getUser_mail() + " | " +currentAttendance.getDate());
                                 }
+                                Toast.makeText(context,"Number of attendances: "+ counter,Toast.LENGTH_SHORT).show();
                             }
                         }
 
