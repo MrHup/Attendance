@@ -17,10 +17,12 @@ import java.util.ArrayList;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder>{
     private ArrayList<Course> courses;
     private Context context;
+    private Boolean deals_with_generator;
 
-    public CourseAdapter(Context context, ArrayList<Course> courses){
+    public CourseAdapter(Context context, ArrayList<Course> courses, Boolean deals_with_generator){
         this.context = context;
         this.courses = courses;
+        this.deals_with_generator = deals_with_generator;
     }
 
     @NonNull
@@ -39,18 +41,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i= new Intent(context, QR_Generator.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                if(deals_with_generator){
+                    Intent i= new Intent(context, QR_Generator.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    // get course_id from DQRC
+                    String DQRC = courses.get(position).getDQRC();
+                    int iend = DQRC.indexOf("_");
+                    String subString = DQRC.substring(0 , iend);
+                    i.putExtra("COURSE_ID", subString);
+                    context.startActivity(i);
+                }else{
 
-                // get course_id from DQRC
-                String DQRC = courses.get(position).getDQRC();
-                int iend = DQRC.indexOf("_");
+                }
 
-                String subString = DQRC.substring(0 , iend);
-
-
-                i.putExtra("COURSE_ID", subString);
-                context.startActivity(i);
             }
         });
     }
