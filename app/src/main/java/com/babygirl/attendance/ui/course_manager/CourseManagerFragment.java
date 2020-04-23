@@ -55,16 +55,16 @@ public class CourseManagerFragment extends Fragment {
             ValueEventListener eventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    String DQRC =  dataSnapshot.child("DQRC").getValue().toString();
-                    String course_name = dataSnapshot.child("course_name").getValue().toString();
-                    String instructor_name = dataSnapshot.child("instructor_name").getValue().toString();
-                    String target_year = dataSnapshot.child("target_year").getValue().toString();
+                        String DQRC = dataSnapshot.child("DQRC").getValue().toString();
+                        String course_name = dataSnapshot.child("course_name").getValue().toString();
+                        String instructor_name = dataSnapshot.child("instructor_name").getValue().toString();
+                        String target_year = dataSnapshot.child("target_year").getValue().toString();
 
-                    courses.add(new Course(DQRC, course_name, instructor_name,target_year));
-                    Log.d("debug_querry", courses.get(courses.size() - 1).toString());
+                        courses.add(new Course(DQRC, course_name, instructor_name, target_year));
+                        Log.d("debug_querry", courses.get(courses.size() - 1).toString());
 
-                    displayCourseList(v);
-                }
+                        displayCourseList(v);
+                    }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {}

@@ -2,13 +2,16 @@ package com.babygirl.attendance;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.babygirl.attendance.ui.course_manager.CourseManagerFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -73,11 +76,21 @@ public class AddCourse extends AppCompatActivity {
         // get DQRC
         DQRC = course_id + "_" + getAlphaNumeric(6);
 
-        // create course entry
-        // save reference to the course for current user
-        write_data();
+        if(!course_name.equals("") && !target_year.equals("")) {
+            // create course entry
+            // save reference to the course for current user
+            write_data();
 
-        finish();
+            Intent i = new Intent(this, CourseManagerFragment.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
+            i.putExtra("id",14);
+            startActivity(i);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Please fill all the required fields",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
