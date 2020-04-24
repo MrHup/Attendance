@@ -2,7 +2,9 @@ package com.babygirl.attendance;
 
 import android.content.Intent;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private String DQRC;
     private String course_name;
     private String instructor_name;

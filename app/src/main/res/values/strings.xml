@@ -6,4 +6,5 @@
     <string name="title_dashboard">Attendance</string>
     <string name="title_notifications">Presence Card</string>
     <string name="title_course_manager">Course Manager</string>
+    <string name="title_student_attendances">Student Attendances</string>
 </resources>

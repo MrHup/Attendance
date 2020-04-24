@@ -27,12 +27,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     private ArrayList<Course> courses;
     private Context context;
     private Boolean deals_with_generator;
+    private Boolean for_students;
     private int counter;
 
-    public CourseAdapter(Context context, ArrayList<Course> courses, Boolean deals_with_generator){
+    public CourseAdapter(Context context, ArrayList<Course> courses, Boolean deals_with_generator, Boolean for_students){
         this.context = context;
         this.courses = courses;
         this.deals_with_generator = deals_with_generator;
+        this.for_students = for_students;
     }
 
     @NonNull
@@ -60,7 +62,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     String subString = DQRC.substring(0 , iend);
                     i.putExtra("COURSE_ID", subString);
                     context.startActivity(i);
-                }else{
+                }else if(for_students){
                     // get all attendances, put them in a list
                     String DQRC = courses.get(position).getDQRC();
                     int iend = DQRC.indexOf("_");
@@ -94,6 +96,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     userIdRef.addListenerForSingleValueEvent(eventListener);
 
 
+                }else{
+                    //professor list of attendances
+
+                    // open up a new activity
+                    // pass it the course id
+                    Intent i= new Intent(context, Student_Dashboard.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    // get course_id from DQRC
+                    String DQRC = courses.get(position).getDQRC();
+                    int iend = DQRC.indexOf("_");
+                    String subString = DQRC.substring(0 , iend);
+                    i.putExtra("COURSE_ID", subString);
+                    context.startActivity(i);
                 }
 
             }

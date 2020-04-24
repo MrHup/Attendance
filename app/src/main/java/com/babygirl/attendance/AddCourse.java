@@ -81,10 +81,10 @@ public class AddCourse extends AppCompatActivity {
             // save reference to the course for current user
             write_data();
 
-            Intent i = new Intent(this, CourseManagerFragment.class);
+            /*Intent i = new Intent(this, CourseManagerFragment.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
-            i.putExtra("id",14);
-            startActivity(i);
+            startActivity(i);*/
+            finish();
         }
         else{
             Toast.makeText(getApplicationContext(), "Please fill all the required fields",

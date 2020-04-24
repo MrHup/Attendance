@@ -101,7 +101,7 @@ public class AttendancesFragment extends Fragment {
     private void displayCourseList(View root){
         recyclerView = root.findViewById(R.id.recyclerViewStudents1);
 
-        CourseAdapter myAdapter = new CourseAdapter(getContext(),courses,false);
+        CourseAdapter myAdapter = new CourseAdapter(getContext(),courses,false,false);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }

@@ -7,9 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_attendances"
+        android:id="@+id/navigation_student_attendances"
         android:icon="@drawable/ic_menu_book_24px"
-        android:title="@string/title_dashboard" />
+        android:title="@string/title_student_attendances" />
 
     <item
         android:id="@+id/navigation_presence_card"

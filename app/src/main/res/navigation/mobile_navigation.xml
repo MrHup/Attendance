@@ -28,4 +28,10 @@
         android:name="com.babygirl.attendance.ui.course_manager.CourseManagerFragment"
         android:label="@string/title_course_manager"
         tools:layout="@layout/fragment_course_manager" />
+
+    <fragment
+        android:id="@+id/navigation_student_attendances"
+        android:name="com.babygirl.attendance.ui.student_attendances.StudentAttendancesFragment"
+        android:label="@string/title_student_attendances"
+        tools:layout="@layout/fragment_attendace_for_student" />
 </navigation>
