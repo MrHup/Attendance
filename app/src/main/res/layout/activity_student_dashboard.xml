@@ -11,7 +11,59 @@
         android:id="@+id/studentsAttendances"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#1B000000">
+
+        <EditText
+            android:id="@+id/date_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="Date"
+            android:inputType="date"
+            android:textColor="@color/fui_bgGitHub"
+            android:textColorHint="@color/colorAlbastru"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/student_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Student name"
+            android:inputType="textPersonName"
+            android:textColor="@color/fui_bgGitHub"
+            android:textColorHint="@color/colorAlbastru"
+            android:textColorLink="#00000000"
+            app:layout_constraintBottom_toTopOf="@+id/date_editText"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/filter_button"
+            android:layout_width="123dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="20dp"
+            android:text="Filter"
+            android:background="@color/colorLiliac"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date_editText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
