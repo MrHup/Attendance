@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.babygirl.attendance.AddCourse;
 import com.babygirl.attendance.Attendance;
@@ -24,6 +25,7 @@ import com.babygirl.attendance.Course;
 import com.babygirl.attendance.CourseAdapter;
 import com.babygirl.attendance.Courses;
 import com.babygirl.attendance.R;
+import com.babygirl.attendance.ui.student_attendances.StudentAttendancesFragment;
 import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +41,7 @@ import java.util.Iterator;
 
 public class CourseManagerFragment extends Fragment {
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
     private ArrayList<String> course_ids = new ArrayList<>();
     public ArrayList<Course> courses = new ArrayList<>();
@@ -95,6 +98,10 @@ public class CourseManagerFragment extends Fragment {
                         i++;
                     }
                     get_Courses();
+                    Log.d("debug_progress","before changing vis");
+                    if(progressBar != null){
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
 
@@ -114,6 +121,7 @@ public class CourseManagerFragment extends Fragment {
     }
 
     public static CourseManagerFragment newInstance() {
+        Log.d("debug_fragments","new fragment");
         return new CourseManagerFragment();
     }
 
@@ -122,8 +130,8 @@ public class CourseManagerFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_course_manager, container, false);
         v= root;
-
-
+        progressBar = root.findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.VISIBLE);
         get_IDs();
 
         final ImageButton addCourse = root.findViewById(R.id.button_add_course);
@@ -138,6 +146,7 @@ public class CourseManagerFragment extends Fragment {
 
         return root;
     }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
