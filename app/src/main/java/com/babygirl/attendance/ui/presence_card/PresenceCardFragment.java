@@ -39,6 +39,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -49,6 +50,26 @@ public class PresenceCardFragment extends Fragment {
     private TextView textView;
     private BarcodeDetector barcodeDetector;
     private PresenceCardViewModel presenceCardViewModel;
+    private static boolean debouncer;
+
+    private String getAlphaNumeric(int len) {
+
+        char[] ch = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+
+        char[] c = new char[len];
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < len; i++) {
+            c[i] = ch[random.nextInt(ch.length)];
+        }
+
+        return new String(c);
+    }
+
+    private void makeNewQRCode(final String course_id){
+        String DQRC = course_id + "_" + getAlphaNumeric(6);
+        FirebaseDatabase.getInstance().getReference("Courses/").child(course_id).child("DQRC").setValue(DQRC);
+        Log.d("debug_firebase","Added new QR code");
+    }
 
     private void addUserCourseReference(String course_id){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -65,6 +86,7 @@ public class PresenceCardFragment extends Fragment {
         presenceCardViewModel =
                 ViewModelProviders.of(this).get(PresenceCardViewModel.class);
         View root = inflater.inflate(R.layout.activity_qr__reader, container, false);
+        debouncer = true;
 
         /// IMPLEMENTATION OF ACTUAL QR READER
         surfaceView = (SurfaceView) root.findViewById(R.id.camerapreview);
@@ -127,8 +149,7 @@ public class PresenceCardFragment extends Fragment {
                                 subString = result_code.substring(0, iend);
                             }
 
-                            Vibrator vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                            vibrator.vibrate(70);
+
 
                             //verifying if the code is valid
                             if(subString!="")
@@ -165,6 +186,14 @@ public class PresenceCardFragment extends Fragment {
 
                                                     // add course to interest_courses if not already there
                                                     addUserCourseReference(child.getKey());
+                                                    if(debouncer){
+                                                        Vibrator vibrator = (Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                                                        vibrator.vibrate(70);
+                                                        makeNewQRCode(child.getKey());
+                                                        debouncer = false;
+                                                    }
+
+
 
                                                     textView.setText("Success");
                                                     // get out of fragment

@@ -27,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -38,6 +39,24 @@ public class QR_Reader extends AppCompatActivity {
     TextView textView;
     BarcodeDetector barcodeDetector;
 
+    private String getAlphaNumeric(int len) {
+
+        char[] ch = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".toCharArray();
+
+        char[] c = new char[len];
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < len; i++) {
+            c[i] = ch[random.nextInt(ch.length)];
+        }
+
+        return new String(c);
+    }
+
+    private void makeNewQRCode(final String course_id){
+        String DQRC = course_id + "_" + getAlphaNumeric(6);
+        FirebaseDatabase.getInstance().getReference("Courses/").child(course_id).child("DQRC").setValue(DQRC);
+        Log.d("debug_firebase","Added new QR code");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +160,8 @@ public class QR_Reader extends AppCompatActivity {
                                                     myRef.setValue(strDate);
                                                     myRef = database.getReference("Courses/"+child.getKey()+"/attendances/"+identifier+"/user_mail");
                                                     myRef.setValue(HelpFuncs.extract_curr_user_mail());
+
+                                                    makeNewQRCode(child.getKey());
 
                                                     textView.setText("Success");
                                                     finish();
