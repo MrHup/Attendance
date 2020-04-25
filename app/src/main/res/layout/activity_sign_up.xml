@@ -33,7 +33,7 @@
         android:drawableStart="@drawable/ic_lock_outline_black_24dp"
         android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
         android:drawablePadding="10dp"
-        android:hint="Confrim Password"
+        android:hint="Confirm Password"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
