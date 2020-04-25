@@ -84,6 +84,7 @@ public class AddCourse extends AppCompatActivity {
             /*Intent i = new Intent(this, CourseManagerFragment.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) ;
             startActivity(i);*/
+
             finish();
         }
         else{

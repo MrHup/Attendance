@@ -52,6 +52,7 @@ public class CourseManagerFragment extends Fragment {
 
     // get the course_name, target_year of each of those courses
     private void get_Courses(){
+        courses = new ArrayList<>();
         for(String i_id : course_ids)
         {
             DatabaseReference userIdRef = db.getReference("Courses").child(i_id);
@@ -86,11 +87,12 @@ public class CourseManagerFragment extends Fragment {
         String uuid = "+" + user.getUid();
         Log.d("debug_querry","hi from course manager wit id = " + uuid);
         // QUERRY EXAMPLE for retrieving all keys from a root
+
         Query query2 = db.getReference().child("Users").child(uuid).child("interest_courses");
-        query2.addListenerForSingleValueEvent(new ValueEventListener() {
+        query2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("debug_querry",dataSnapshot.getValue() + "!");
+                course_ids = new ArrayList<>();
                 if (dataSnapshot.exists()) {
                     int i = 0;
                     for(DataSnapshot d : dataSnapshot.getChildren()) {
