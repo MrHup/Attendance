@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.babygirl.attendance.Course;
 import com.babygirl.attendance.CourseAdapter;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 
 public class StudentAttendancesFragment extends Fragment {
     RecyclerView recyclerView;
+    ProgressBar progressBar;
 
     private ArrayList<String> course_ids = new ArrayList<>();
     public ArrayList<Course> courses = new ArrayList<>();
@@ -87,6 +89,9 @@ public class StudentAttendancesFragment extends Fragment {
                         i++;
                     }
                     get_Courses();
+                    if(progressBar != null){
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
 
@@ -114,7 +119,8 @@ public class StudentAttendancesFragment extends Fragment {
         //attendancesViewModel = ViewModelProviders.of(this).get(AttendancesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_attendace_for_student, container, false);
         v= root;
-
+        progressBar = root.findViewById(R.id.progressBar3);
+        progressBar.setVisibility(View.VISIBLE);
 
         get_IDs();
 
