@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.babygirl.attendance.ui.profile.ProfileFragment"
+        android:name="com.babygirl.attendance.ui.fragments.profile.ProfileFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/navigation_attendances"
-        android:name="com.babygirl.attendance.ui.attendances.AttendancesFragment"
+        android:name="com.babygirl.attendance.ui.fragments.attendances.AttendancesFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_attendace_for_student" />
 
     <fragment
         android:id="@+id/navigation_presence_card"
-        android:name="com.babygirl.attendance.ui.presence_card.PresenceCardFragment"
+        android:name="com.babygirl.attendance.ui.fragments.presence_card.PresenceCardFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_presence_card" />
 
     <fragment
         android:id="@+id/navigation_course_manager"
-        android:name="com.babygirl.attendance.ui.course_manager.CourseManagerFragment"
+        android:name="com.babygirl.attendance.ui.fragments.course_manager.CourseManagerFragment"
         android:label="@string/title_course_manager"
         tools:layout="@layout/fragment_course_manager" />
 
     <fragment
         android:id="@+id/navigation_student_attendances"
-        android:name="com.babygirl.attendance.ui.student_attendances.StudentAttendancesFragment"
+        android:name="com.babygirl.attendance.ui.fragments.student_attendances.StudentAttendancesFragment"
         android:label="@string/title_student_attendances"
         tools:layout="@layout/fragment_attendace_for_student" />
 </navigation>

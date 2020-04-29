@@ -15,48 +15,44 @@
         >
 
         <activity
-            android:name=".Prof_Dashboard"
+            android:name=".ui.dashboards.Prof_Dashboard"
             android:theme="@style/AppTheme"
             android:label="@string/title_activity_prof_dashboard"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.SplashScreen">
             <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.babygirl.attendance.MainActivity" />
+            android:value="com.babygirl.attendance.ui.SplashScreen" />
 
         </activity>
 
         <activity
             android:theme="@style/AppTheme"
-            android:name=".AttendanceListStudent"
+            android:name=".ui.dashboards.AttendanceListStudent"
             android:label="@string/title_activity_attendance_list_student"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.SplashScreen">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.babygirl.attendance.MainActivity" />
+                android:value="com.babygirl.attendance.ui.SplashScreen" />
         </activity>
-        <activity android:name=".Loading" />
-        <activity android:name=".AddCourse" />
-        <activity android:name=".Student_Dashboard" />
+        <activity android:name=".ui.Loading" />
+        <activity android:name=".ui.AddCourse" />
+        <activity android:name=".ui.dashboards.Student_Dashboard" />
 
         <activity android:name=".QR_Generator" />
-        <activity android:name=".QR_Reader" />
         <activity
-            android:name=".Courses"
+            android:name=".ui.ChooseRole"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ChooseRole"
+            android:name=".ui.SignUp"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUp"
+            android:name=".ui.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.TransitionPage"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activity2"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".ui.SplashScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
