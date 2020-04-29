@@ -21,7 +21,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class SignUp extends AppCompatActivity {
@@ -118,8 +119,15 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "e-uvt.ro";
+                Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+                Matcher matcher = pattern.matcher(login_Email.getText().toString());
+                if(matcher.matches()==false){
+
+                    Toast.makeText(getApplicationContext(), "Please use the email provided by UVT", Toast.LENGTH_SHORT).show();
+                }
                 //check if fields are empty
-                if (login_Email.getText().toString().matches("") || login_Password.getText().toString().matches("") || login_Confirm.getText().toString().matches("")) {
+                else if (login_Email.getText().toString().matches("") || login_Password.getText().toString().matches("") || login_Confirm.getText().toString().matches("")) {
 
                     Toast.makeText(getApplicationContext(), "Please fill all the required fields.", Toast.LENGTH_SHORT).show();
                 }
