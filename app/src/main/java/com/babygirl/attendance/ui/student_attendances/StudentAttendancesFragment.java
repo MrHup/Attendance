@@ -84,6 +84,9 @@ public class StudentAttendancesFragment extends Fragment {
                 Log.d("debug_querry",dataSnapshot.getValue() + "!");
                 if (dataSnapshot.exists()) {
                     int i = 0;
+                    if(progressBar != null){
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
                     for(DataSnapshot d : dataSnapshot.getChildren()) {
                         course_ids.add(d.getKey());
                         i++;
@@ -120,7 +123,7 @@ public class StudentAttendancesFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_attendace_for_student, container, false);
         v= root;
         progressBar = root.findViewById(R.id.progressBar3);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
 
         get_IDs();
 

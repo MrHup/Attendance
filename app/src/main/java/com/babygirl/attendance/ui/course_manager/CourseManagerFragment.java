@@ -95,6 +95,9 @@ public class CourseManagerFragment extends Fragment {
                 course_ids = new ArrayList<>();
                 if (dataSnapshot.exists()) {
                     int i = 0;
+                    if(progressBar != null){
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
                     for(DataSnapshot d : dataSnapshot.getChildren()) {
                         course_ids.add(d.getKey());
                         i++;
@@ -133,7 +136,7 @@ public class CourseManagerFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_course_manager, container, false);
         v= root;
         progressBar = root.findViewById(R.id.progressBar2);
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
         get_IDs();
 
         final ImageButton addCourse = root.findViewById(R.id.button_add_course);
