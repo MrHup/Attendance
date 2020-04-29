@@ -54,7 +54,7 @@ public class Loading extends AppCompatActivity {
                     // logout the user
                     logout();
                 }
-                if(value){
+                if(value !=null){
                     Log.d("debug_firebase","user is prof, going to dashboard");
                     Intent i = new Intent(Loading.this, Prof_Dashboard.class);
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -20,7 +20,11 @@ public class SplashScreen extends AppCompatActivity {
         // get firebase user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null)
+        {
+            Log.d("debug_firebase",user.getEmail());
             return true;
+        }
+
         return false;
     }
 
